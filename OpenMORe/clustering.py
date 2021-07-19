@@ -540,7 +540,7 @@ class lpca:
         eps_rec = 1.0
         residuals = np.array(0)
         iter_max = 500
-        eps_tol = 1E-16
+        eps_tol = 1E-08
         return iteration, eps_rec, residuals, iter_max, eps_tol
 
     
