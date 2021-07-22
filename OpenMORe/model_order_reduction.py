@@ -1024,16 +1024,12 @@ class LPCA(PCA):
         #axes.set_title('Parity plot')
         plt.show()
 
+        plt.plot(self.X[:,self._num_to_plot], self.X[:,self._num_to_plot], color='r', linestyle='-', linewidth=2, markerfacecolor='b')
         sns.set_theme(style="dark")
-	sns.scatterplot(
-		x=self.X[:,self._num_to_plot], y=reconstructed_[:,self._num_to_plot]
-	)
-        sns.histplot(
-		x=self.X[:,self._num_to_plot], y=reconstructed_[:,self._num_to_plot],
-		bins=500, cbar=True
-	)
-        
-	plt.show()
+        sns.histplot(x=self.X[:,self._num_to_plot], y=reconstructed_[:,self._num_to_plot],bins=100, cbar=True)
+        plt.xlabel("Original variable")
+        plt.ylabel("Reconstructed from LPCA manifold")
+        plt.show()
 
 
     def plot_PCs(self):
