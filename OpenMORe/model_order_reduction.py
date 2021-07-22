@@ -24,6 +24,7 @@ import warnings
 import random
 import scipy.special as sp
 import math
+import seaborn as sns
 
 from .utilities import *
 from . import clustering
@@ -1024,6 +1025,13 @@ class LPCA(PCA):
         plt.show()
 
 
+        sns.histplot(
+            x=self.X[:,self._num_to_plot], y=reconstructed_[:,self._num_to_plot],
+            bins=10, cbar=True
+        )
+        plt.show()
+
+
     def plot_PCs(self):
         '''
         Plot the variables' weights on a selected Principal Component (PC).
@@ -1044,6 +1052,7 @@ class LPCA(PCA):
         axes.set_xlabel('Variables [-]')
         axes.set_ylabel('Weights on the PC number: {}, k = {} [-]'.format(self.set_num_to_plot, self.clust_to_plot))
         plt.show()
+
 
 
 class KPCA(PCA):
