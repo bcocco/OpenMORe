@@ -1025,15 +1025,15 @@ class LPCA(PCA):
         plt.show()
 
         sns.set_theme(style="dark")
-
 	sns.scatterplot(
-	    x=self.X[:,self._num_to_plot], y=reconstructed_[:,self._num_to_plot]
+		x=self.X[:,self._num_to_plot], y=reconstructed_[:,self._num_to_plot]
 	)
         sns.histplot(
-            x=self.X[:,self._num_to_plot], y=reconstructed_[:,self._num_to_plot],
-            bins=500, cbar=True
-        )
-        plt.show()
+		x=self.X[:,self._num_to_plot], y=reconstructed_[:,self._num_to_plot],
+		bins=500, cbar=True
+	)
+        
+	plt.show()
 
 
     def plot_PCs(self):
