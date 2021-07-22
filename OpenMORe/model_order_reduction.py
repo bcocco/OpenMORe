@@ -1024,13 +1024,15 @@ class LPCA(PCA):
         #axes.set_title('Parity plot')
         plt.show()
 
-        sns.scatterplot(
+        sns.set_theme(style="dark)
+
+	sns.scatterplot(
 	    x=self.X[:,self._num_to_plot], y=reconstructed_[:,self._num_to_plot],
 	    s=5, color=".15"
 	)
         sns.histplot(
             x=self.X[:,self._num_to_plot], y=reconstructed_[:,self._num_to_plot],
-            bins=10, cbar=True
+            bins=100, cbar=True
         )
         plt.show()
 
