@@ -1031,6 +1031,13 @@ class LPCA(PCA):
         plt.ylabel("Reconstructed from LPCA manifold")
         plt.show()
 
+        plt.plot(self.X[:,self._num_to_plot], self.X[:,self._num_to_plot], color='r', linestyle='-', linewidth=2, markerfacecolor='b')
+        skd = sns.JointGrid(x=self.X[:,self._num_to_plot], y=reconstructed_[:,self._num_to_plot], space=0)
+        skd.plot_joint(sns.kdeplot,
+             fill=True, clip=((0, 2500), (0, 2500)),
+             thresh=0, levels=100, cmap="rocket")
+        skd.plot_marginals(sns.histplot, color="#03051A", alpha=1, bins=25)
+        plt.show()
 
     def plot_PCs(self):
         '''
