@@ -25,6 +25,7 @@ import random
 import scipy.special as sp
 import math
 import seaborn as sns
+import pandas as pd
 
 from .utilities import *
 from . import clustering
@@ -447,7 +448,7 @@ class PCA:
             axes.set_ylabel('Explained variance [-]')
             axes.set_title('Variance explained by {} PCs: {}'.format(self.eigens, round(explained,3)))
             axes.legend()
-        plt.show()
+        plt.savefig("explained.pdf")
 
         return explained
 
@@ -1034,11 +1035,20 @@ class LPCA(PCA):
         plt.plot(self.X[:,self._num_to_plot], self.X[:,self._num_to_plot], color='r', linestyle='-', linewidth=2, markerfacecolor='b')
         skd = sns.JointGrid(x=self.X[:,self._num_to_plot], y=reconstructed_[:,self._num_to_plot], space=0)
         skd.plot_joint(sns.kdeplot,
-             fill=True, clip=((0, 2500), (0, 2500)),
-             thresh=0, levels=100, cmap="rocket")
+             fill=True, thresh=0, levels=100, cmap="rocket")
         skd.plot_marginals(sns.histplot, color="#03051A", alpha=1, bins=25)
         plt.show()
 
+        h1=self.X[:,self._num_to_plot]
+        h1 = pd.Series(h1, name="Original variable PDF")
+        ax = sns.distplot(h1)
+        plt.show()
+
+        h2=self.X[:,self._num_to_plot]
+        h2 = pd.Series(h2, name="Reconstructed from LPCA manifold PDF")
+        ax = sns.distplot(h2)
+        plt.show()
+        
     def plot_PCs(self):
         '''
         Plot the variables' weights on a selected Principal Component (PC).
