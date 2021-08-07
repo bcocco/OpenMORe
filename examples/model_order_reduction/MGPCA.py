@@ -111,20 +111,21 @@ X_recovered = X_preprocessed_cut @ Bi @ PCs.T
 X_ = unscale(X_recovered, sigma)
 X_back = uncenter(X_, mu)
 
+model.get_explained()
 
-# Assess the quality of the reconstruction by means of a parity plot
-matplotlib.rcParams.update({'font.size' : 14, 'text.usetex' : True})
-for ii in range(X.shape[1]):
-    a = plt.axes(aspect='equal')
-    plt.scatter(X[:,ii], X_back[:,ii], c='darkgray', label= "$MGPCA\ reconstruction$")
-    plt.xlabel('$Original\ Variable\ [-]$')
-    plt.ylabel('$Reconstructed\ Variable\ [-]$')
-    lims = [np.min(X[:,ii]), np.max(X[:,ii])]
-    plt.xlim(lims)
-    plt.ylim(lims)
-    _ = plt.plot(lims, lims, 'k', label= "$True\ value$")
-    #plt.ticklabel_format(style='sci', axis='y', scilimits=(0,0))
-    plt.legend(loc="best")
-    plt.title("$MGPCA\ reconstruction$")
-    plt.savefig('Comparison_rec_error_MGPCA.png', dpi=300)
-    plt.show()
+# # Assess the quality of the reconstruction by means of a parity plot
+# matplotlib.rcParams.update({'font.size' : 14, 'text.usetex' : True})
+# for ii in range(X.shape[1]):
+#     a = plt.axes(aspect='equal')
+#     plt.scatter(X[:,ii], X_back[:,ii], c='darkgray', label= "$MGPCA\ reconstruction$")
+#     plt.xlabel('$Original\ Variable\ [-]$')
+#     plt.ylabel('$Reconstructed\ Variable\ [-]$')
+#     lims = [np.min(X[:,ii]), np.max(X[:,ii])]
+#     plt.xlim(lims)
+#     plt.ylim(lims)
+#     _ = plt.plot(lims, lims, 'k', label= "$True\ value$")
+#     #plt.ticklabel_format(style='sci', axis='y', scilimits=(0,0))
+#     plt.legend(loc="best")
+#     plt.title("$MGPCA\ reconstruction$")
+#     plt.savefig('Comparison_rec_error_MGPCA.png', dpi=300)
+#     plt.show()

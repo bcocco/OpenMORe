@@ -37,6 +37,10 @@ settings ={
 
     #the local principal component you want to plot:
     "PC_to_plot"                    :   0,
+
+    # "plot_explained_variance"       :   True,
+
+    "plot_explained_variance"        :   True,
 }
 
 # Load the input matrix 
@@ -56,6 +60,5 @@ X_rec_lpca = model.recover()
 # Assess the reconstruction of the variables from the lower dimensional manifold
 # by means of a parity plot
 model.plot_parity()
-
 # Plot the PCs in the clusters
-model.plot_PCs()
+# model.plot_PCs()  

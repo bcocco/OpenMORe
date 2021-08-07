@@ -43,7 +43,7 @@ settings ={
     "enable_plot_variance"      : True,
     
     #set the number of the variable whose reconstruction must be plotted
-    "variable_to_plot"          : 1,
+    "variable_to_plot"          : 0,
 }
 
 # Load the input matrix 
