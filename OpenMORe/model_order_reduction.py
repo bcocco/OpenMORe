@@ -26,6 +26,8 @@ import scipy.special as sp
 import math
 import seaborn as sns
 import pandas as pd
+import copy
+from matplotlib.colors import LogNorm
 
 from .utilities import *
 from . import clustering
@@ -1039,14 +1041,10 @@ class LPCA(PCA):
         skd.plot_marginals(sns.histplot, color="#03051A", alpha=1, bins=25)
         plt.show()
 
-        h1=self.X[:,self._num_to_plot]
-        h1 = pd.Series(h1, name="Original variable PDF")
-        ax = sns.distplot(h1)
-        plt.show()
-
-        h2=self.X[:,self._num_to_plot]
-        h2 = pd.Series(h2, name="Reconstructed from LPCA manifold PDF")
-        ax = sns.distplot(h2)
+        cmap = copy(plt.cm.plasma)
+        cmap.set_bad(cmap(0))
+        h, xedges, yedges = np.histogram2d(x=self.X[:,self._num_to_plot], y=reconstructed_[:,self._num_to_plot], bins=[400, 400])
+        plt.pcolormesh(xedges, yedges, h.T, cmap=cmap, norm=LogNorm(vmax=1.5e2), rasterized=True)
         plt.show()
         
     def plot_PCs(self):
